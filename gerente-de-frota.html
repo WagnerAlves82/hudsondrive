@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hudson Drive — Vaga de Gerente de Frota</title>
+<meta name="description" content="Hudson Drive está contratando Gerente de Frota. Ganhos reais, conforme o desempenho da sua frota de parceiros. Cadastre-se.">
+<link rel="icon" href="assets/img/logo_site.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #2D67C4;
+    --azul-escuro: #14295c;
+    --verde: #5C9A3C;
+    --preto: #14171c;
+    --cinza-texto: #5b6472;
+    --cinza-borda: #e3e6ea;
+    --offwhite: #f6f5f1;
+    --branco: #ffffff;
+    --raio: 18px;
+    --sombra: 0 24px 48px -22px rgba(20, 23, 28, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(160deg, #eef3fb 0%, var(--offwhite) 38%, #eef6ec 100%);
+    color: var(--preto);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Exo 2', 'Inter', sans-serif;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  header {
+    padding: 20px 24px;
+  }
+
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hd-icon,
+  .hd-wordmark {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .hd-icon img,
+  .hd-wordmark img {
+    position: absolute;
+    display: block;
+    max-width: none;
+  }
+
+  .hd-icon { width: 34.9px; height: 27px; }
+  .hd-icon img { width: 37px; height: 37px; left: -2.1px; top: -4.9px; }
+
+  .hd-wordmark { width: 96px; height: 23px; }
+  .hd-wordmark img { width: 101.8px; height: 101.8px; left: -1.3px; top: -40.1px; }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 24px 24px 48px;
+  }
+
+  .caixa {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--verde);
+    background: rgba(92, 154, 60, 0.1);
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+
+  .eyebrow .ponto {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--verde);
+  }
+
+  .lado-texto h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.14;
+    color: var(--preto);
+  }
+
+  .lado-texto h1 .destaque { color: var(--azul); }
+
+  .lado-texto p.sub {
+    margin-top: 16px;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    max-width: 48ch;
+  }
+
+  .cargo-resumo {
+    margin-top: 26px;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .cargo-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--preto);
+  }
+
+  .cargo-item svg { flex-shrink: 0; color: var(--azul); }
+
+  .beneficios {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .beneficio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    padding: 18px 20px;
+  }
+
+  .beneficio-icone {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 103, 196, 0.1);
+    color: var(--azul);
+  }
+
+  .beneficio-textos { flex: 1; }
+
+  .beneficio-titulo {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 3px;
+  }
+
+  .beneficio-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cinza-texto);
+  }
+
+  .requisitos {
+    margin-top: 22px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    padding: 20px 22px;
+  }
+
+  .requisitos-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--cinza-texto);
+    margin-bottom: 12px;
+  }
+
+  .requisitos-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .requisitos-lista li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--preto);
+  }
+
+  .requisitos-lista svg {
+    flex-shrink: 0;
+    color: var(--verde);
+  }
+
+  /* ---- Formulário ---- */
+
+  .form-card {
+    background: var(--branco);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+
+  .form-banner {
+    position: relative;
+    height: 340px;
+  }
+
+  .form-banner-imagem {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 80%;
+  }
+
+  .form-banner-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--branco) 0%, rgba(255, 255, 255, 0.88) 22%, rgba(255, 255, 255, 0.28) 55%, rgba(255, 255, 255, 0) 78%);
+  }
+
+  .form-card-conteudo {
+    padding: 32px 32px 24px;
+  }
+
+  .form-kicker {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15.5px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--azul);
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+
+  .form-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .form-subtexto {
+    font-size: 13.5px;
+    color: var(--cinza-texto);
+    margin: 0 0 22px;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-grid .form-full { grid-column: 1 / -1; }
+
+  .form-input {
+    width: 100%;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--preto);
+    background: var(--branco);
+    margin-bottom: 12px;
+  }
+
+  .form-input:focus { outline: none; border-color: var(--azul); }
+
+  .form-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 8px 0 20px;
+    font-size: 12.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .form-checkbox-row input { margin-top: 3px; }
+  .form-checkbox-row a { color: var(--azul); font-weight: 600; }
+
+  .btn-enviar {
+    width: 100%;
+    border: none;
+    background: var(--azul);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-enviar:hover { background: var(--azul-escuro); transform: translateY(-1px); }
+  .btn-enviar[disabled] { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  .form-nota {
+    margin: 12px 0 0;
+    font-size: 11.5px;
+    color: var(--cinza-texto);
+    text-align: center;
+  }
+
+  .form-erro {
+    margin: 10px 0 0;
+    font-size: 12.5px;
+    color: #e24c4c;
+    text-align: center;
+  }
+
+  .form-sucesso { text-align: center; padding: 10px 0; }
+
+  .form-sucesso svg {
+    width: 44px;
+    height: 44px;
+    color: var(--verde);
+    margin-bottom: 12px;
+  }
+
+  .form-sucesso h3 { font-size: 19px; margin-bottom: 8px; }
+  .form-sucesso p { color: var(--cinza-texto); font-size: 14px; margin: 0; }
+
+  @media (max-width: 900px) {
+    .caixa { grid-template-columns: 1fr; gap: 32px; }
+    main { padding: 12px 20px 40px; }
+    .form-card-conteudo { padding: 22px 22px 26px; }
+    .form-banner { height: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="marca">
+    <span class="hd-icon"><img src="assets/img/logo_site.png" alt=""></span>
+    <span class="hd-wordmark"><img src="assets/img/tipo_logo.png" alt="Hudson Drive"></span>
+  </a>
+</header>
+
+<main>
+  <div class="caixa">
+    <div class="lado-texto">
+      <span class="eyebrow"><span class="ponto"></span>RH e Negócios</span>
+      <h1>A Hudson Drive precisa de um <span class="destaque">Gerente de Frota</span></h1>
+      <p class="sub">
+        Se você tem perfil de liderança e quer construir algo
+        junto com a gente, cadastre-se abaixo.
+      </p>
+
+      <div class="cargo-resumo">
+        <span class="cargo-item">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          Gestão de frota
+        </span>
+        <span class="cargo-item">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+          Vaga aberta agora
+        </span>
+      </div>
+
+      <div class="beneficios">
+        <div class="beneficio-card">
+          <div class="beneficio-icone">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"></path><path d="M17 5.5c0-1.9-2.2-3.5-5-3.5S7 3.6 7 5.5 9.2 9 12 9s5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"></path></svg>
+          </div>
+          <div class="beneficio-textos">
+            <div class="beneficio-titulo">Oportunidade</div>
+            <div class="beneficio-desc">Seus resultados acompanham o crescimento da frota que você gerencia — nada de teto fixo.</div>
+          </div>
+        </div>
+
+        <div class="beneficio-card">
+          <div class="beneficio-icone">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2Z"></path><path d="M11.6 16.7 13 21l3.5-2"></path></svg>
+          </div>
+          <div class="beneficio-textos">
+            <div class="beneficio-titulo">Autonomia de verdade</div>
+            <div class="beneficio-desc">Você recruta, orienta e acompanha os motoristas parceiros da sua região.</div>
+          </div>
+        </div>
+
+        <div class="beneficio-card">
+          <div class="beneficio-icone">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"></path><path d="M17 7h4v4"></path></svg>
+          </div>
+          <div class="beneficio-textos">
+            <div class="beneficio-titulo">Cresça com a marca</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requisitos">
+        <div class="requisitos-titulo">Requisitos</div>
+        <ul class="requisitos-lista">
+          <li>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="m8 12.5 2.5 2.5 5.5-6"></path></svg>
+            Ter experiência como motorista de aplicativo
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="m8 12.5 2.5 2.5 5.5-6"></path></svg>
+            Ter espírito empreendedor
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="m8 12.5 2.5 2.5 5.5-6"></path></svg>
+            Carro ou moto própria
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="m8 12.5 2.5 2.5 5.5-6"></path></svg>
+            CNH A ou B EAR
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-conteudo">
+      <p class="form-kicker">Descubra o potencial de ganhos da sua região.</p>
+      <h2>Quero ser Gerente de Frota</h2>
+      <p class="form-subtexto">Deixe seus dados e nosso time entra em contato com você.</p>
+
+      <form id="form-intencao">
+        <div class="form-grid">
+          <input class="form-input form-full" type="text" name="nome" placeholder="Nome completo" required>
+          <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required>
+          <input class="form-input" type="email" name="email" placeholder="E-mail" required>
+          <input class="form-input form-full" type="text" name="cidade" placeholder="Cidade onde pretende atuar" required>
+        </div>
+
+        <label class="form-checkbox-row">
+          <input type="checkbox" required>
+          <span>Li e concordo com a <a href="https://movisix-legal.netlify.app" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+        </label>
+
+        <button type="submit" class="btn-enviar">
+          Enviar cadastro
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </button>
+
+        <p class="form-nota">Isso é um pré-cadastro de intenção — não é uma matrícula nem gera qualquer cobrança.</p>
+        <p class="form-erro" id="form-erro" hidden>Não conseguimos enviar agora. Verifique sua internet e tente de novo.</p>
+      </form>
+
+      <div class="form-sucesso" id="form-sucesso" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="m8.5 12.5 2.5 2.5 4.5-5"></path>
+        </svg>
+        <h3>Cadastro recebido!</h3>
+        <p>Obrigado pelo interesse na Hudson Drive. Nosso time vai analisar seu cadastro e entrar em contato.</p>
+      </div>
+      </div>
+
+      <div class="form-banner">
+        <img class="form-banner-imagem" src="assets/img/fundo_hero.carro.webp" alt="">
+        <div class="form-banner-scrim"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  var SUPABASE_URL = 'https://hsbmsncwptsvmxqerhdz.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_68iJcrAKTLlMf4Vc7_ld5Q_-y6IH_6p';
+
+  var formIntencao = document.getElementById('form-intencao');
+  if (formIntencao) {
+    var botaoEnviar = formIntencao.querySelector('.btn-enviar');
+    var textoBotaoOriginal = botaoEnviar.innerHTML;
+    var erroEl = document.getElementById('form-erro');
+
+    formIntencao.addEventListener('submit', function (e) {
+      e.preventDefault();
+      erroEl.hidden = true;
+
+      var dados = new FormData(formIntencao);
+      var corpo = {
+        perfil: 'gerente_frota',
+        nome: dados.get('nome'),
+        whatsapp: dados.get('whatsapp'),
+        email: dados.get('email'),
+        cidade: dados.get('cidade'),
+      };
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = 'Enviando...';
+
+      fetch(SUPABASE_URL + '/rest/v1/pre_cadastro_site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: 'Bearer ' + SUPABASE_KEY,
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(corpo),
+      })
+        .then(function (resposta) {
+          if (!resposta.ok) throw new Error('Falha ao enviar');
+          formIntencao.hidden = true;
+          document.getElementById('form-sucesso').hidden = false;
+        })
+        .catch(function () {
+          erroEl.hidden = false;
+        })
+        .finally(function () {
+          botaoEnviar.disabled = false;
+          botaoEnviar.innerHTML = textoBotaoOriginal;
+        });
+    });
+  }
+</script>
+
+</body>
+</html>

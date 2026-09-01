@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hudson Drive — Mobilidade que conecta</title>
+<meta name="description" content="Hudson Drive conecta passageiros a motoristas parceiros com tecnologia de ponta, das capitais ao interior.">
+<link rel="icon" href="assets/img/hudson-drive-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #2D67C4;
+    --azul-escuro: #14295c;
+    --verde: #5C9A3C;
+    --vermelho: #E24C4C;
+    --preto: #14171c;
+    --cinza-texto: #5b6472;
+    --cinza-borda: #e3e6ea;
+    --offwhite: #f6f5f1;
+    --offwhite-card: #ffffff;
+    --branco: #ffffff;
+    --raio: 18px;
+    --sombra: 0 24px 48px -22px rgba(20, 23, 28, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--offwhite);
+    color: var(--preto);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Exo 2', 'Inter', sans-serif;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(246, 245, 241, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cinza-borda);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+  }
+
+  .nav-marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Recorte da logo/tipografia: os arquivos-fonte trazem bastante
+     margem em volta do desenho, então cada selo mostra só a área com
+     conteúdo (medida via bounding-box de pixels), ampliada e deslocada
+     dentro de uma janela com overflow:hidden. */
+  .hd-icon,
+  .hd-wordmark {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .hd-icon img,
+  .hd-wordmark img {
+    position: absolute;
+    display: block;
+    max-width: none;
+  }
+
+  .hd-icon--nav { width: 43.9px; height: 34px; }
+  .hd-icon--nav img { width: 46.6px; height: 46.6px; left: -2.6px; top: -6.15px; }
+
+  .hd-wordmark--nav { width: 108px; height: 26px; }
+  .hd-wordmark--nav img { width: 114.8px; height: 114.8px; left: -1.46px; top: -45.17px; }
+
+  .hd-icon--footer { width: 33.6px; height: 26px; }
+  .hd-icon--footer img { width: 35.64px; height: 35.64px; left: -1.98px; top: -4.7px; }
+
+  .hd-wordmark--footer { width: 75px; height: 18px; }
+  .hd-wordmark--footer img { width: 79.45px; height: 79.45px; left: -1.01px; top: -31.27px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--cinza-texto);
+    white-space: nowrap;
+  }
+
+  section[id] { scroll-margin-top: 84px; }
+
+  .nav-links a:hover { color: var(--azul); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primario {
+    background: var(--azul);
+    color: var(--branco);
+    box-shadow: 0 12px 24px -10px rgba(45, 103, 196, 0.55);
+  }
+
+  .btn-primario:hover {
+    background: var(--azul-escuro);
+    transform: translateY(-1px);
+  }
+
+  .btn-secundario {
+    background: var(--branco);
+    color: var(--azul-escuro);
+    border: 1.5px solid var(--cinza-borda);
+  }
+
+  .btn-secundario:hover {
+    border-color: var(--azul);
+    color: var(--azul);
+  }
+
+  .nav .btn { padding: 10px 20px; font-size: 14px; }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    padding: 56px 24px 0;
+  }
+
+  .hero-conteudo {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.15;
+    font-weight: 800;
+    max-width: 15ch;
+  }
+
+  .hero h1 .destaque {
+    display: block;
+    color: var(--verde);
+  }
+
+  .hero-sub {
+    margin-top: 18px;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--cinza-texto);
+    max-width: 42ch;
+  }
+
+  .hero-features {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .hero-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 82px;
+  }
+
+  .hero-feature-icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 103, 196, 0.1);
+  }
+
+  .hero-feature--verde .hero-feature-icone {
+    background: rgba(92, 154, 60, 0.12);
+  }
+
+  .hero-feature-icone svg { width: 21px; height: 21px; }
+
+  .hero-feature span {
+    font-size: 12.5px;
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--preto);
+  }
+
+  .hero-cta-row {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .hero-cta-row .btn-primario { padding: 15px 26px; font-size: 15px; }
+
+  .hero-tagline {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--preto);
+    font-weight: 600;
+  }
+
+  .hero-tagline span { display: block; color: var(--verde); }
+
+  /* Cena: carro + celular + selos animados */
+
+  .hero-visual { position: relative; }
+
+  .hero-cena {
+    position: relative;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .hero-carro-img {
+    width: 100%;
+    display: block;
+  }
+
+  .hero-celular-img {
+    position: absolute;
+    left: -9%;
+    top: 21%;
+    width: 44%;
+    z-index: 2;
+    filter: drop-shadow(0 26px 30px rgba(20, 23, 28, 0.3));
+  }
+
+  .hero-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--branco);
+    box-shadow: 0 10px 22px -8px rgba(20, 23, 28, 0.32);
+    animation: hero-badge-float 3.2s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  .hero-badge--chart,
+  .hero-badge--leaf {
+    width: 15%;
+    aspect-ratio: 1;
+  }
+
+  .hero-badge--chart { left: 15.2%; top: 25.8%; border: 2px solid var(--azul); }
+  .hero-badge--leaf { left: 55.8%; top: 26.3%; border: 2px solid var(--verde); }
+
+  .hero-badge--chart svg,
+  .hero-badge--leaf svg {
+    width: 48%;
+    height: 48%;
+  }
+
+  .hero-badge--wifi {
+    left: 80.1%;
+    top: 35.6%;
+    width: 19.8%;
+    aspect-ratio: 1;
+    background: var(--azul);
+    box-shadow: 0 12px 26px -8px rgba(45, 103, 196, 0.6);
+  }
+
+  .hero-badge--wifi svg { width: 52%; height: 52%; }
+
+  @keyframes hero-badge-float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-20px); }
+  }
+
+  /* Só as ondas do wifi pulsam — o ponto central fica parado */
+  .wifi-svg .onda {
+    transform-origin: 12px 18.4px;
+    animation: wifi-pulso 1.8s ease-in-out infinite;
+  }
+
+  .wifi-svg .onda-2 { animation-delay: 0.35s; }
+
+  @keyframes wifi-pulso {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-badge { animation: none; }
+    .wifi-svg .onda { animation: none; opacity: 0.9; }
+  }
+
+  /* ---------- Barra de estatísticas (flutuante) ---------- */
+
+  .hero-stats-bar {
+    position: relative;
+    z-index: 4;
+    margin-top: 56px;
+    margin-bottom: -64px;
+    background: var(--branco);
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    padding: 26px 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-stat-icone {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--cinza-borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-stat-icone svg { width: 20px; height: 20px; }
+
+  .hero-stat-item p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--preto);
+  }
+
+  .hero-stat-item p span {
+    display: block;
+    font-weight: 500;
+    color: var(--cinza-texto);
+  }
+
+  /* ---------- Apresentação ---------- */
+
+  .apresentacao {
+    padding: 152px 24px 88px;
+  }
+
+  .apresentacao-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .secao-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .apresentacao h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--preto);
+  }
+
+  .apresentacao-texto p {
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--cinza-texto);
+    margin: 0 0 16px;
+  }
+
+  .apresentacao-texto p:last-child { margin-bottom: 0; }
+
+  /* ---------- Cards Missão / Valores / Visão (com foto) ---------- */
+
+  .pilares {
+    padding: 0 24px 96px;
+  }
+
+  .pilares-cabecalho {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 52px;
+  }
+
+  .pilares-cabecalho h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+  }
+
+  .pilares-cabecalho p {
+    margin-top: 14px;
+    font-size: 16px;
+    color: var(--cinza-texto);
+    line-height: 1.6;
+  }
+
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pilar-card {
+    position: relative;
+    isolation: isolate;
+    min-height: 380px;
+    border-radius: var(--raio);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 24px;
+    color: var(--branco);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pilar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra);
+  }
+
+  .pilar-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(20, 23, 28, 0.15) 0%, rgba(20, 23, 28, 0.55) 55%, rgba(20, 23, 28, 0.9) 100%);
+  }
+
+  .pilar-card--missao { background-image: url("assets/img/card-missao.jpg"); }
+  .pilar-card--valores { background-image: url("assets/img/card-valores.jpg"); }
+  .pilar-card--visao { background-image: url("assets/img/card-visao.jpg"); }
+
+  .pilar-card--missao::before { background: linear-gradient(180deg, rgba(20, 41, 92, 0.1) 0%, rgba(20, 41, 92, 0.55) 55%, rgba(20, 41, 92, 0.92) 100%); }
+  .pilar-card--valores::before { background: linear-gradient(180deg, rgba(24, 46, 15, 0.1) 0%, rgba(24, 46, 15, 0.55) 55%, rgba(24, 46, 15, 0.92) 100%); }
+  .pilar-card--visao::before { background: linear-gradient(180deg, rgba(10, 15, 30, 0.15) 0%, rgba(10, 15, 30, 0.6) 55%, rgba(10, 15, 30, 0.94) 100%); }
+
+  .pilar-icone {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+  }
+
+  .pilar-icone svg { width: 22px; height: 22px; }
+
+  .pilar-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .pilar-card p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+  }
+
+  /* ---------- Tópicos (motorista / passageiro / empreendedor) ---------- */
+
+  .topico { padding: 88px 24px; }
+
+  .topico-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .topico h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .topico-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--cinza-texto);
+    margin: 0 0 22px;
+  }
+
+  .topico-lista {
+    list-style: none;
+    margin: 0 0 30px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .topico-lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--preto);
+  }
+
+  .topico-lista svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; }
+
+  .topico-img-card {
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    line-height: 0;
+  }
+
+  .topico-img-card img { width: 100%; display: block; }
+
+  .topico-celular-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topico-celular-card img {
+    max-width: 360px;
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0 30px 40px rgba(20, 23, 28, 0.22));
+  }
+
+  /* ---------- Motorista / Motociclista: duas colunas, texto + foto com overlay ---------- */
+
+  .veiculo-destaque {
+    display: flex;
+    min-height: 480px;
+  }
+
+  .veiculo-destaque--moto { flex-direction: row-reverse; }
+
+  .veiculo-texto-col {
+    flex: 0 0 42%;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(155deg, #0a0e1a 0%, #16233f 100%);
+    padding: 56px 5vw 56px 24px;
+  }
+
+  .veiculo-destaque--moto .veiculo-texto-col { padding: 56px 24px 56px 5vw; }
+
+  .veiculo-texto { max-width: 420px; margin-left: auto; }
+
+  .veiculo-destaque--moto .veiculo-texto { margin-left: 0; margin-right: auto; }
+
+  .veiculo-texto .secao-eyebrow { color: #b7e388; }
+
+  .veiculo-texto h2 {
+    font-size: clamp(26px, 3.2vw, 36px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .veiculo-texto .topico-desc { color: rgba(255, 255, 255, 0.82); }
+
+  .veiculo-texto .topico-lista li { color: #ffffff; }
+
+  .veiculo-foto-col {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .veiculo-foto-col img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .veiculo-destaque--motorista .veiculo-foto-col img { object-position: 70% center; }
+  .veiculo-destaque--moto .veiculo-foto-col img { object-position: 30% top; }
+
+  .topico .btn-primario svg { width: 16px; height: 16px; }
+
+  /* ---------- Franqueado: programa de licenciamento ---------- */
+
+  .franquia { padding: 88px 24px; }
+
+  .franquia-intro {
+    max-width: 680px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+
+  .franquia-intro h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .franquia-intro p {
+    margin-top: 14px;
+    font-size: 16px;
+    color: var(--cinza-texto);
+    line-height: 1.6;
+  }
+
+  .franquia-foto-banner {
+    max-width: 1140px;
+    margin: 0 auto 64px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    line-height: 0;
+  }
+
+  .franquia-foto-banner img {
+    width: 100%;
+    height: clamp(220px, 32vw, 380px);
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+
+  .franquia-bloco { max-width: 1140px; margin: 0 auto 64px; }
+
+  .franquia-bloco:last-child { margin-bottom: 0; }
+
+  .franquia-bloco-titulo {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 24px;
+  }
+
+  .beneficio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .beneficio-card {
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    padding: 26px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .beneficio-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra);
+  }
+
+  .beneficio-icone {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 103, 196, 0.1);
+    box-shadow: 0 0 0 8px rgba(45, 103, 196, 0.06);
+    margin-bottom: 20px;
+  }
+
+  .beneficio-icone svg { width: 21px; height: 21px; }
+
+  .beneficio-card h3 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 8px;
+  }
+
+  .beneficio-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    margin: 0;
+  }
+
+  .franquia-teste {
+    position: relative;
+    overflow: hidden;
+    background: var(--branco);
+    border: 2px solid var(--azul);
+    border-radius: 20px;
+    padding: 32px 36px;
+  }
+
+  .franquia-teste::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(45, 103, 196, 0.16);
+    right: -90px;
+    top: -90px;
+  }
+
+  .franquia-teste-topo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .franquia-teste-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(45, 103, 196, 0.12);
+    box-shadow: 0 0 0 8px rgba(45, 103, 196, 0.06);
+  }
+
+  .franquia-teste-badge svg { width: 24px; height: 24px; }
+
+  .franquia-teste-topo .rotulo {
+    display: block;
+    color: var(--azul);
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .franquia-teste-valor {
+    margin-top: 2px;
+    font-family: 'Exo 2', sans-serif;
+    color: var(--verde);
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  .franquia-teste-valor .dias {
+    color: var(--cinza-texto);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .franquia-teste-desc {
+    position: relative;
+    z-index: 1;
+    max-width: 70ch;
+    margin-top: 20px;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--preto);
+  }
+
+  .franquia-duas-colunas {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid var(--cinza-borda);
+  }
+
+  .franquia-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .franquia-lista li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--preto);
+  }
+
+  .franquia-lista svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; }
+
+  .franquia-lista strong { font-weight: 700; }
+
+  .franquia-subtitulo {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--preto);
+    margin-bottom: 16px;
+  }
+
+  .franquia-pills {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .franquia-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--offwhite);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--preto);
+  }
+
+  .franquia-pill .ponto {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--verde);
+    flex-shrink: 0;
+  }
+
+  .franquia-investimento {
+    background: var(--offwhite);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    padding: 30px 32px;
+  }
+
+  .franquia-investimento .rotulo {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 8px;
+  }
+
+  .franquia-investimento h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 10px;
+  }
+
+  .franquia-investimento p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--cinza-texto);
+    margin: 0;
+  }
+
+  .franquia-passos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .franquia-passo-numero {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(45, 103, 196, 0.3);
+    margin-bottom: 10px;
+  }
+
+  .franquia-passo h3 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 8px;
+  }
+
+  .franquia-passo p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    margin: 0;
+  }
+
+  .franquia-cta {
+    position: relative;
+    overflow: visible;
+    max-width: 1140px;
+    margin: 0 auto;
+    background: linear-gradient(155deg, #0a0e1a 0%, #16233f 100%);
+    border-radius: 24px;
+    padding: 48px 40px;
+    text-align: left;
+  }
+
+  .franquia-cta-conteudo { position: relative; z-index: 6; max-width: 58%; }
+
+  .franquia-cta-imagem {
+    position: absolute;
+    z-index: 1;
+    right: 32px;
+    bottom: -70px;
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    object-position: 62% 100%;
+  }
+
+  .franquia-cta h3 {
+    color: #ffffff;
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .franquia-cta p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 15px;
+    margin: 0 0 26px;
+  }
+
+  /* ---------- Formulário de intenção ---------- */
+
+  .formulario {
+    padding: 96px 24px;
+    background: linear-gradient(135deg, rgba(45, 103, 196, 0.09) 0%, rgba(246, 245, 241, 1) 45%, rgba(92, 154, 60, 0.09) 100%);
+  }
+
+  .formulario-cabecalho {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+
+  .formulario-cabecalho h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+  }
+
+  .formulario-cabecalho p {
+    margin-top: 14px;
+    font-size: 16px;
+    color: var(--cinza-texto);
+    line-height: 1.6;
+  }
+
+  .formulario-card {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--branco);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    padding: 40px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 12px;
+  }
+
+  .form-radio-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .form-radio-group input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .form-radio-group label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 14px;
+    padding: 14px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cinza-texto);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  .form-radio-group label svg { width: 20px; height: 20px; color: var(--cinza-texto); }
+
+  .form-radio-group input:checked + label {
+    border-color: var(--azul);
+    background: rgba(45, 103, 196, 0.07);
+    color: var(--azul-escuro);
+  }
+
+  .form-radio-group input:checked + label svg { color: var(--azul); }
+
+  .form-radio-group input:focus-visible + label {
+    outline: 2px solid var(--azul);
+    outline-offset: 2px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+
+  .form-grid .form-full { grid-column: 1 / -1; }
+
+  .form-input {
+    width: 100%;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 14.5px;
+    font-family: inherit;
+    color: var(--preto);
+    background: var(--branco);
+    margin-bottom: 14px;
+  }
+
+  .form-input:focus { outline: none; border-color: var(--azul); }
+
+  .form-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 12px 0 26px;
+    font-size: 13.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .form-checkbox-row input { margin-top: 3px; }
+
+  .form-checkbox-row a { color: var(--azul); font-weight: 600; }
+
+  .form-submit { width: 100%; justify-content: center; padding: 15px; font-size: 15px; }
+  .form-submit svg { width: 16px; height: 16px; }
+
+  .form-nota {
+    margin: 14px 0 0;
+    font-size: 12.5px;
+    color: var(--cinza-texto);
+    text-align: center;
+  }
+
+  .form-erro {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: var(--vermelho);
+    text-align: center;
+  }
+
+  .form-submit[disabled] { opacity: 0.7; cursor: not-allowed; }
+
+  .form-sucesso { text-align: center; padding: 12px 0; }
+
+  .form-sucesso svg {
+    width: 48px;
+    height: 48px;
+    color: var(--verde);
+    margin-bottom: 14px;
+  }
+
+  .form-sucesso h3 { font-size: 20px; margin-bottom: 8px; }
+
+  .form-sucesso p { color: var(--cinza-texto); font-size: 14.5px; margin: 0; }
+
+  /* ---------- Rodapé ---------- */
+
+  footer { padding: 44px 24px 30px; border-top: 1px solid var(--cinza-borda); }
+
+  .footer-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--cinza-texto);
+  }
+
+  .footer-links a:hover { color: var(--azul); }
+
+  .footer-copy {
+    width: 100%;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--cinza-borda);
+    font-size: 12px;
+    color: var(--cinza-texto);
+    text-align: center;
+  }
+
+  /* ---------- Responsivo ---------- */
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+
+    .hero-conteudo {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+      order: -1;
+      /* full-bleed: escapa do padding lateral do .hero pra encostar nas bordas da tela */
+      width: calc(100% + 48px);
+      margin-left: -24px;
+      margin-right: -24px;
+    }
+
+    .hero-cena { max-width: none; }
+
+    .hero-features { flex-wrap: wrap; row-gap: 18px; }
+
+    .hero-stats-bar {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 22px 24px;
+      margin-top: 40px;
+      margin-bottom: 0;
+    }
+
+    .apresentacao {
+      padding: 64px 24px;
+    }
+
+    .apresentacao-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .pilares-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pilar-card { min-height: 300px; }
+
+    .topico { padding: 56px 24px; }
+
+    .topico-grid { grid-template-columns: 1fr; gap: 28px; }
+
+    .veiculo-destaque,
+    .veiculo-destaque--moto {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .veiculo-foto-col { flex: none; height: 260px; order: -1; }
+
+    .veiculo-texto-col,
+    .veiculo-destaque--moto .veiculo-texto-col {
+      padding: 40px 24px;
+    }
+
+    .veiculo-texto,
+    .veiculo-destaque--moto .veiculo-texto {
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .franquia { padding: 56px 24px; }
+
+    .franquia-intro { margin-bottom: 40px; }
+
+    .franquia-bloco { margin-bottom: 40px; }
+
+    .beneficio-grid { grid-template-columns: 1fr; }
+
+    .franquia-foto-banner { margin-bottom: 40px; border-radius: 18px; }
+
+    .franquia-teste { padding: 24px; }
+
+    .franquia-teste::after { display: none; }
+
+    .franquia-duas-colunas { grid-template-columns: 1fr; gap: 32px; }
+
+    .franquia-passos { grid-template-columns: 1fr; gap: 28px; }
+
+    .franquia-cta { padding: 32px 24px; text-align: center; }
+
+    .franquia-cta-conteudo { max-width: 100%; }
+
+    .franquia-cta-imagem { display: none; }
+
+    .formulario { padding: 56px 24px; }
+
+    .formulario-card { padding: 26px 22px; }
+
+    .form-grid { grid-template-columns: 1fr; }
+
+    .footer-grid { justify-content: center; text-align: center; }
+
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="nav-marca">
+      <span class="hd-icon hd-icon--nav"><img src="assets/img/logo_site.png" alt=""></span>
+      <span class="hd-wordmark hd-wordmark--nav"><img src="assets/img/tipo_logo.png" alt="Hudson Drive"></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#apresentacao">Sobre</a>
+      <a href="#pilares">Missão &amp; Valores</a>
+      <a href="#motorista">Motorista</a>
+      <a href="#motociclista">Motociclista</a>
+      <a href="#passageiro">Passageiro</a>
+      <a href="#franqueado">Empreendedor</a>
+    </nav>
+    <a href="#formulario" class="btn btn-primario">Pré-cadastro</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-conteudo">
+    <div class="hero-texto">
+      <h1>Mobilidade urbana <span class="destaque">inteligente e sustentável</span></h1>
+      <p class="hero-sub">
+        Conectamos pessoas e cidades com tecnologia, segurança e respeito ao meio
+        ambiente. O futuro se move com você.
+      </p>
+
+      <div class="hero-features">
+        <div class="hero-feature">
+          <div class="hero-feature-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20v-5"></path>
+              <path d="M8.5 16.5a5 5 0 0 1 7 0"></path>
+              <path d="M5.5 13.5a9 9 0 0 1 13 0"></path>
+              <path d="M4 20h16"></path>
+            </svg>
+          </div>
+          <span>Cidade inteligente</span>
+        </div>
+
+        <div class="hero-feature">
+          <div class="hero-feature-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+              <circle cx="12" cy="9.5" r="2.3"></circle>
+            </svg>
+          </div>
+          <span>Mobilidade urbana</span>
+        </div>
+
+        <div class="hero-feature hero-feature--verde">
+          <div class="hero-feature-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 4 13c0-4 3.5-8 7-9 3.5 1 7 5 7 9a7 7 0 0 1-7 7Z"></path>
+              <path d="M11 20v-6"></path>
+              <path d="M11 14 8 11"></path>
+            </svg>
+          </div>
+          <span>Ecologia e sustentabilidade</span>
+        </div>
+
+        <div class="hero-feature">
+          <div class="hero-feature-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v5c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-3Z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <span>Segurança para você</span>
+        </div>
+
+        <div class="hero-feature">
+          <div class="hero-feature-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.2"></rect>
+              <path d="M11 18.2h2"></path>
+            </svg>
+          </div>
+          <span>Tecnologia que conecta</span>
+        </div>
+      </div>
+
+      <div class="hero-cta-row">
+        <a href="#formulario" class="btn btn-primario">
+          Vem com a gente
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+        <div class="hero-tagline">Seu caminho.<span>Nossa responsabilidade.</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-cena">
+        <img class="hero-carro-img" src="assets/img/fundo_hero.carro.webp" alt="Carro Hudson Drive numa cidade inteligente">
+        <img class="hero-celular-img" src="assets/img/fundo_celular.webp" alt="Tela do aplicativo Hudson Drive">
+
+        <div class="hero-badge hero-badge--chart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 19V10"></path>
+            <path d="M12 19V5"></path>
+            <path d="M19 19v-7"></path>
+          </svg>
+        </div>
+
+        <div class="hero-badge hero-badge--leaf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 4 13c0-4 3.5-8 7-9 3.5 1 7 5 7 9a7 7 0 0 1-7 7Z"></path>
+            <path d="M11 20v-6"></path>
+            <path d="M11 14 8 11"></path>
+          </svg>
+        </div>
+
+        <div class="hero-badge hero-badge--wifi">
+          <svg class="wifi-svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="18.4" r="1.7" fill="#ffffff"></circle>
+            <path class="onda onda-1" d="M8.6 15.2a4.8 4.8 0 0 1 6.8 0" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"></path>
+            <path class="onda onda-2" d="M5.6 12.2a8.8 8.8 0 0 1 12.8 0" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-stats-bar">
+      <div class="hero-stat-item">
+        <div class="hero-stat-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3"></circle>
+            <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
+            <circle cx="17" cy="8.5" r="2.4"></circle>
+            <path d="M15.5 14.2c2.6.4 4.5 2.6 4.5 5.3"></path>
+          </svg>
+        </div>
+        <p>Mais oportunidades<span>para todos</span></p>
+      </div>
+
+      <div class="hero-stat-item">
+        <div class="hero-stat-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 4 13c0-4 3.5-8 7-9 3.5 1 7 5 7 9a7 7 0 0 1-7 7Z"></path>
+            <path d="M11 20v-6"></path>
+            <path d="M11 14 8 11"></path>
+          </svg>
+        </div>
+        <p>Menos impacto,<span>mais futuro</span></p>
+      </div>
+
+      <div class="hero-stat-item">
+        <div class="hero-stat-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 16v-3.5L6.8 8a2 2 0 0 1 1.9-1.3h6.6A2 2 0 0 1 17.2 8L19 12.5V16"></path>
+            <rect x="3.5" y="16" width="17" height="3.4" rx="1.2"></rect>
+            <circle cx="7.5" cy="19.4" r="1.3"></circle>
+            <circle cx="16.5" cy="19.4" r="1.3"></circle>
+          </svg>
+        </div>
+        <p>Corridas eficientes,<span>cidades melhores</span></p>
+      </div>
+
+      <div class="hero-stat-item">
+        <div class="hero-stat-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <path d="M3.5 12h17"></path>
+            <path d="M12 3.5c2.4 2.3 3.7 5.2 3.7 8.5s-1.3 6.2-3.7 8.5c-2.4-2.3-3.7-5.2-3.7-8.5S9.6 5.8 12 3.5Z"></path>
+          </svg>
+        </div>
+        <p>Sustentabilidade<span>em movimento</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apresentacao" class="apresentacao">
+  <div class="container apresentacao-grid">
+    <div>
+      <span class="secao-eyebrow">Quem somos</span>
+      <h2>Tecnologia a serviço de quem se movimenta.</h2>
+    </div>
+    <div class="apresentacao-texto">
+      <p>
+        Hudson Drive, app de mobilidade, surgiu com a proposta de elevar a qualidade dos
+        serviços de transporte e viagens através da tecnologia. Conectamos milhares de
+        pessoas, facilitando o acesso a motoristas parceiros usando a internet, tanto nas
+        capitais quanto no interior.
+      </p>
+      <p>
+        Trabalhamos com tecnologia de ponta e infraestrutura moderna para entregar uma
+        plataforma ágil, estável e atual — pensada para dar tranquilidade a quem pede uma
+        corrida e renda real a quem dirige.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="pilares" class="pilares">
+  <div class="container">
+    <div class="pilares-cabecalho">
+      <span class="secao-eyebrow">O que nos move</span>
+      <h2>Missão, valores e visão</h2>
+      <p>Os princípios que guiam cada decisão do Hudson Drive, do código à estrada.</p>
+    </div>
+
+    <div class="pilares-grid">
+      <div class="pilar-card pilar-card--missao">
+        <div class="pilar-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <circle cx="12" cy="12" r="5"></circle>
+            <circle cx="12" cy="12" r="1"></circle>
+          </svg>
+        </div>
+        <h3>Missão</h3>
+        <p>
+          Resgatar a paixão pelo transporte por aplicativos, gerando renda real para
+          os motoristas parceiros e a melhor experiência para quem viaja.
+        </p>
+      </div>
+
+      <div class="pilar-card pilar-card--valores">
+        <div class="pilar-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 4 13c0-4 3.5-8 7-9 3.5 1 7 5 7 9a7 7 0 0 1-7 7Z"></path>
+            <path d="M11 20v-6"></path>
+            <path d="M11 14 8 11"></path>
+          </svg>
+        </div>
+        <h3>Valores</h3>
+        <p>
+          Seguimos as diretrizes ambientais discutidas na COP30, priorizando a
+          sustentabilidade — nossa frota é predominantemente formada por carros flex,
+          que aceitam etanol como combustível, reduzindo as emissões do transporte urbano.
+        </p>
+      </div>
+
+      <div class="pilar-card pilar-card--visao">
+        <div class="pilar-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <h3>Visão</h3>
+        <p>
+          Estar presente na implementação das cidades inteligentes, sendo parceira da
+          inclusão social promovida pela tecnologia, e gerar satisfação a quem usa
+          nossos serviços.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="motorista" class="veiculo-destaque veiculo-destaque--motorista">
+  <div class="veiculo-texto-col">
+    <div class="veiculo-texto">
+      <span class="secao-eyebrow">Motorista parceiro</span>
+      <h2>Dirija com a Hudson Drive</h2>
+      <p class="topico-desc">
+        Ainda estamos chegando na sua região. Faça seu pré-cadastro e seja um dos
+        primeiros a ser chamado quando abrirmos vagas para motoristas parceiros perto de você.
+      </p>
+      <ul class="topico-lista">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Ganhos reais, direto no seu bolso
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Você escolhe seus horários
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Kit completo Hudson Drive: uniforme, boné e crachá
+        </li>
+      </ul>
+      <a href="#formulario" class="btn btn-primario" data-preselect="mot">
+        Fazer pré-cadastro
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </div>
+  <div class="veiculo-foto-col">
+    <img src="assets/img/motorista_parceiro.png" alt="Motorista parceiro Hudson Drive uniformizado">
+  </div>
+</section>
+
+<section id="motociclista" class="veiculo-destaque veiculo-destaque--moto">
+  <div class="veiculo-texto-col">
+    <div class="veiculo-texto">
+      <span class="secao-eyebrow">Motociclista parceiro</span>
+      <h2>Rode de moto com a Hudson Drive</h2>
+      <p class="topico-desc">
+        Faça seu pré-cadastro como motociclista parceiro e seja avisado assim que
+        abrirmos as corridas de moto na sua cidade.
+      </p>
+      <ul class="topico-lista">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Corridas mais rápidas, direto pelo trânsito
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Frota preparada para motos elétricas
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b7e388" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Você escolhe seus horários
+        </li>
+      </ul>
+      <a href="#formulario" class="btn btn-primario" data-preselect="mot">
+        Fazer pré-cadastro
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </div>
+  <div class="veiculo-foto-col">
+    <img src="assets/img/hudson_moto.png" alt="Moto elétrica Hudson Drive numa cidade inteligente">
+  </div>
+</section>
+
+<section id="passageiro" class="topico">
+  <div class="container topico-grid">
+    <div class="topico-texto">
+      <span class="secao-eyebrow">Passageiro</span>
+      <h2>Sua primeira viagem com desconto</h2>
+      <p class="topico-desc">
+        Baixe o app, cadastre-se e ganhe desconto na sua primeira corrida com a
+        Hudson Drive. É a forma mais fácil de conhecer a plataforma.
+      </p>
+      <ul class="topico-lista">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Peça sua corrida em poucos toques
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Acompanhe tudo em tempo real
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5C9A3C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+          Desconto especial na primeira viagem
+        </li>
+      </ul>
+      <a href="#formulario" class="btn btn-primario" data-preselect="pax">
+        Quero meu desconto
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+    <div class="topico-visual">
+      <div class="topico-celular-card">
+        <img src="assets/img/fundo_celular.webp" alt="Tela do aplicativo Hudson Drive">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="franqueado" class="franquia">
+  <div class="franquia-intro">
+    <span class="secao-eyebrow">Empreendedor</span>
+    <h2>Leve a Hudson Drive pra sua cidade</h2>
+    <p>
+      Um modelo de licenciamento com exclusividade territorial para quem quer operar
+      a marca Hudson Drive numa nova cidade ou região.
+    </p>
+  </div>
+
+  <div class="franquia-foto-banner">
+    <img src="assets/img/card-visao.jpg" alt="Skyline de uma cidade à noite — a próxima cidade Hudson Drive">
+  </div>
+
+  <div class="franquia-bloco">
+    <h3 class="franquia-bloco-titulo">O que você recebe</h3>
+    <div class="beneficio-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.2"></rect>
+            <path d="M11 18.2h2"></path>
+          </svg>
+        </div>
+        <h3>App de passageiro e motorista</h3>
+        <p>
+          Mesmo aplicativo usado nas cidades piloto, com corridas em tempo real,
+          chat, rotas otimizadas e histórico completo.
+        </p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.3l6-.8L12 3Z"></path>
+          </svg>
+        </div>
+        <h3>Exclusividade territorial</h3>
+        <p>
+          Você é o único operador autorizado da Hudson Drive na sua cidade —
+          ninguém mais compete usando a mesma plataforma na sua região.
+        </p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.5 3.5H20v7.5L11 20.5 3.5 13 12.5 3.5Z"></path>
+            <circle cx="16.3" cy="7.5" r="1.3"></circle>
+          </svg>
+        </div>
+        <h3>Precificação configurada pra você</h3>
+        <p>
+          Tarifa mínima, valor por km e categorias (padrão, pet, mercado)
+          ajustados pra realidade da sua cidade.
+        </p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 13v-1a8 8 0 0 1 16 0v1"></path>
+            <rect x="3" y="13" width="4" height="6" rx="1.5"></rect>
+            <rect x="17" y="13" width="4" height="6" rx="1.5"></rect>
+            <path d="M20 19v1a3 3 0 0 1-3 3h-3"></path>
+          </svg>
+        </div>
+        <h3>Suporte técnico contínuo</h3>
+        <p>
+          Atualizações do app, correções e evolução da plataforma incluídas —
+          você foca em recrutar motoristas, a tecnologia é por nossa conta.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="franquia-bloco">
+    <h3 class="franquia-bloco-titulo">Período de teste</h3>
+    <div class="franquia-teste">
+      <div class="franquia-teste-topo">
+        <div class="franquia-teste-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8"></circle>
+            <path d="M12 9v4l2.5 2.5"></path>
+            <path d="M9 2h6"></path>
+          </svg>
+        </div>
+        <div>
+          <span class="rotulo">Período de teste</span>
+          <div class="franquia-teste-valor">Gratuito <span class="dias">· 10 dias</span></div>
+        </div>
+      </div>
+
+      <p class="franquia-teste-desc">
+        Teste a Hudson Drive gratuitamente por <strong>10 dias</strong> na sua
+        cidade, com acompanhamento e suporte durante o período.
+      </p>
+
+      <div class="franquia-duas-colunas">
+        <div>
+          <span class="franquia-subtitulo">Requisitos para iniciar</span>
+          <ul class="franquia-lista">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+              Cadastrar no mínimo <strong>8 motoristas</strong> na sua cidade
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+              Disponibilizar os motoristas para iniciar os testes
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2D67C4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"></path></svg>
+              Participar do processo inicial de implantação
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="franquia-subtitulo">O que está incluso</span>
+          <div class="franquia-pills">
+            <div class="franquia-pill"><span class="ponto"></span>Marketing digital incluso</div>
+            <div class="franquia-pill"><span class="ponto"></span>Suporte durante o período de teste</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="franquia-bloco">
+    <div class="franquia-investimento">
+      <span class="rotulo">Investimento</span>
+      <h3>Após o período de teste</h3>
+      <p>
+        Condições comerciais sob medida para sua cidade. Taxa de entrada e
+        mensalidade variam conforme o porte e a exclusividade territorial da
+        sua região. Fale com a nossa equipe para receber uma proposta
+        personalizada.
+      </p>
+    </div>
+  </div>
+
+  <div class="franquia-bloco">
+    <h3 class="franquia-bloco-titulo">Como funciona, do teste ao lançamento</h3>
+    <div class="franquia-passos">
+      <div class="franquia-passo">
+        <span class="franquia-passo-numero">01</span>
+        <h3>Test-drive de 10 dias</h3>
+        <p>Você recebe acesso ao app funcionando na sua cidade, sem custo.</p>
+      </div>
+      <div class="franquia-passo">
+        <span class="franquia-passo-numero">02</span>
+        <h3>Decisão e contrato</h3>
+        <p>Gostou do que viu? Formalizamos a licença de operação exclusiva.</p>
+      </div>
+      <div class="franquia-passo">
+        <span class="franquia-passo-numero">03</span>
+        <h3>Lançamento oficial</h3>
+        <p>Sua cidade vai ao ar na Play Store, com tarifas configuradas e suporte ativo.</p>
+      </div>
+    </div>
+  </div><br><br><br><br>
+
+  <div class="franquia-bloco">
+    <div class="franquia-cta">
+      <div class="franquia-cta-conteudo">
+        <h3>Quer testar a Hudson Drive na sua cidade?</h3>
+        <p>Sem custo, sem compromisso. Você decide depois de ver rodando de verdade.</p>
+        <a href="#formulario" class="btn btn-primario" data-preselect="franqueado">
+          Solicitar test-drive
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </a>
+      </div>
+      <img class="franquia-cta-imagem" src="assets/img/franq_teste.png" alt="Motorista parceiro Hudson Drive">
+    </div>
+  </div>
+</section>
+
+<section id="formulario" class="formulario">
+  <div class="container">
+    <div class="formulario-cabecalho">
+      <span class="secao-eyebrow">Pré-cadastro</span>
+      <h2>Formulário de intenção</h2>
+      <p>Deixe seus dados e avisaremos assim que a Hudson Drive chegar até você. Sem custo, sem compromisso.</p>
+    </div>
+
+    <form class="formulario-card" id="form-intencao">
+      <span class="form-label">Quero me cadastrar como:</span>
+      <div class="form-radio-group">
+        <input type="radio" name="perfil" id="form-perfil-pax" value="pax" checked>
+        <label for="form-perfil-pax">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2.4"></rect>
+            <path d="M3 10h18"></path>
+          </svg>
+          Passageiro
+        </label>
+
+        <input type="radio" name="perfil" id="form-perfil-mot" value="mot">
+        <label for="form-perfil-mot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M12 5.5v3"></path>
+          </svg>
+          Motorista
+        </label>
+
+        <input type="radio" name="perfil" id="form-perfil-franqueado" value="franqueado">
+        <label for="form-perfil-franqueado">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="9" width="7" height="12" rx="1"></rect>
+            <rect x="13.5" y="4" width="7" height="17" rx="1"></rect>
+          </svg>
+          Franqueado
+        </label>
+      </div>
+
+      <div class="form-grid">
+        <input class="form-input" type="text" name="nome" placeholder="Nome completo" required>
+        <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required>
+        <input class="form-input form-full" type="email" name="email" placeholder="E-mail" required>
+        <input class="form-input form-full" type="text" name="cidade" placeholder="Cidade" required>
+      </div>
+
+      <label class="form-checkbox-row">
+        <input type="checkbox" required>
+        <span>Li e concordo com a <a href="https://movisix-legal.netlify.app" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+      </label>
+
+      <button type="submit" class="btn btn-primario form-submit">
+        Enviar intenção
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </button>
+
+      <p class="form-nota">Isso é um pré-cadastro de intenção — não é uma matrícula nem gera qualquer cobrança.</p>
+      <p class="form-erro" id="form-erro" hidden>Não conseguimos enviar agora. Verifique sua internet e tente de novo.</p>
+    </form>
+
+    <div class="formulario-card form-sucesso" id="form-sucesso" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="m8.5 12.5 2.5 2.5 4.5-5"></path>
+      </svg>
+      <h3>Intenção recebida!</h3>
+      <p>Obrigado pelo interesse na Hudson Drive. Assim que tivermos novidades pra você, entraremos em contato.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <a href="#" class="footer-marca">
+      <span class="hd-icon hd-icon--footer"><img src="assets/img/logo_site.png" alt=""></span>
+      <span class="hd-wordmark hd-wordmark--footer"><img src="assets/img/tipo_logo.png" alt="Hudson Drive"></span>
+    </a>
+    <nav class="footer-links">
+      <a href="#apresentacao">Sobre</a>
+      <a href="#motorista">Motorista</a>
+      <a href="#motociclista">Motociclista</a>
+      <a href="#passageiro">Passageiro</a>
+      <a href="#franqueado">Empreendedor</a>
+      <a href="https://movisix-legal.netlify.app" target="_blank" rel="noopener">Política de Privacidade</a>
+    </nav>
+    <p class="footer-copy">© 2026 Hudson Drive. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-preselect]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var alvo = document.getElementById('form-perfil-' + el.dataset.preselect);
+      if (alvo) alvo.checked = true;
+    });
+  });
+
+  var SUPABASE_URL = 'https://hsbmsncwptsvmxqerhdz.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_68iJcrAKTLlMf4Vc7_ld5Q_-y6IH_6p';
+
+  var formIntencao = document.getElementById('form-intencao');
+  if (formIntencao) {
+    var botaoEnviar = formIntencao.querySelector('.form-submit');
+    var textoBotaoOriginal = botaoEnviar.innerHTML;
+    var erroEl = document.getElementById('form-erro');
+
+    formIntencao.addEventListener('submit', function (e) {
+      e.preventDefault();
+      erroEl.hidden = true;
+
+      var dados = new FormData(formIntencao);
+      var corpo = {
+        perfil: dados.get('perfil'),
+        nome: dados.get('nome'),
+        whatsapp: dados.get('whatsapp'),
+        email: dados.get('email'),
+        cidade: dados.get('cidade'),
+      };
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = 'Enviando...';
+
+      fetch(SUPABASE_URL + '/rest/v1/pre_cadastro_site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: 'Bearer ' + SUPABASE_KEY,
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(corpo),
+      })
+        .then(function (resposta) {
+          if (!resposta.ok) throw new Error('Falha ao enviar');
+          formIntencao.hidden = true;
+          document.getElementById('form-sucesso').hidden = false;
+        })
+        .catch(function () {
+          erroEl.hidden = false;
+        })
+        .finally(function () {
+          botaoEnviar.disabled = false;
+          botaoEnviar.innerHTML = textoBotaoOriginal;
+        });
+    });
+  }
+</script>
+
+</body>
+</html>

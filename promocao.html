@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hudson Drive — Bônus e desconto de estreia</title>
+<meta name="description" content="Motociclista parceiro ganha R$ 5,00 de bônus. Passageiro ganha 8,74% de desconto na primeira viagem. Faça seu pré-cadastro.">
+<link rel="icon" href="assets/img/logo_site.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #2D67C4;
+    --azul-escuro: #14295c;
+    --verde: #5C9A3C;
+    --preto: #14171c;
+    --cinza-texto: #5b6472;
+    --cinza-borda: #e3e6ea;
+    --offwhite: #f6f5f1;
+    --branco: #ffffff;
+    --raio: 18px;
+    --sombra: 0 24px 48px -22px rgba(20, 23, 28, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #eef3fb 0%, var(--offwhite) 38%, #eef6ec 100%);
+    color: var(--preto);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Exo 2', 'Inter', sans-serif;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  header {
+    padding: 20px 24px;
+  }
+
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hd-icon,
+  .hd-wordmark {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .hd-icon img,
+  .hd-wordmark img {
+    position: absolute;
+    display: block;
+    max-width: none;
+  }
+
+  .hd-icon { width: 34.9px; height: 27px; }
+  .hd-icon img { width: 37px; height: 37px; left: -2.1px; top: -4.9px; }
+
+  .hd-wordmark { width: 96px; height: 23px; }
+  .hd-wordmark img { width: 101.8px; height: 101.8px; left: -1.3px; top: -40.1px; }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 24px 24px 48px;
+  }
+
+  .caixa {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--azul);
+    background: rgba(45, 103, 196, 0.1);
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+
+  .lado-texto h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.14;
+    color: var(--preto);
+  }
+
+  .lado-texto h1 .destaque { color: var(--verde); }
+
+  .lado-texto p.sub {
+    margin-top: 16px;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    max-width: 46ch;
+  }
+
+  .destaques {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .destaque-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--raio);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+
+  .destaque-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra);
+    border-color: transparent;
+  }
+
+  .destaque-valor {
+    flex-shrink: 0;
+    width: 84px;
+    height: 68px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Exo 2', sans-serif;
+  }
+
+  .destaque-card--moto .destaque-valor { background: linear-gradient(155deg, var(--verde) 0%, #3f7a26 100%); }
+  .destaque-card--pax .destaque-valor { background: linear-gradient(155deg, var(--azul) 0%, var(--azul-escuro) 100%); }
+
+  .destaque-valor .n { font-size: 19px; font-weight: 800; line-height: 1.1; }
+  .destaque-valor .u { font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; margin-top: 2px; }
+
+  .destaque-textos { flex: 1; }
+
+  .destaque-titulo {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 3px;
+  }
+
+  .destaque-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--cinza-texto);
+  }
+
+  .destaque-seta {
+    flex-shrink: 0;
+    color: var(--cinza-texto);
+  }
+
+  .rodape-confianca {
+    margin-top: 26px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .confianca-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cinza-texto);
+  }
+
+  .confianca-item .ponto {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--verde);
+    flex-shrink: 0;
+  }
+
+  /* ---- Formulário ---- */
+
+  .form-card {
+    background: var(--branco);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    padding: 32px;
+  }
+
+  .form-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .form-card > p {
+    font-size: 13.5px;
+    color: var(--cinza-texto);
+    margin: 0 0 22px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 10px;
+  }
+
+  .form-radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .form-radio-group input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .form-radio-group label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 14px;
+    padding: 13px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cinza-texto);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  .form-radio-group label svg { width: 19px; height: 19px; color: var(--cinza-texto); }
+
+  .form-radio-group input:checked + label {
+    border-color: var(--azul);
+    background: rgba(45, 103, 196, 0.07);
+    color: var(--azul-escuro);
+  }
+
+  .form-radio-group input:checked + label svg { color: var(--azul); }
+
+  .form-radio-group input:focus-visible + label {
+    outline: 2px solid var(--azul);
+    outline-offset: 2px;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-grid .form-full { grid-column: 1 / -1; }
+
+  .form-input {
+    width: 100%;
+    border: 1.5px solid var(--cinza-borda);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--preto);
+    background: var(--branco);
+    margin-bottom: 12px;
+  }
+
+  .form-input:focus { outline: none; border-color: var(--azul); }
+
+  .form-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 8px 0 20px;
+    font-size: 12.5px;
+    color: var(--cinza-texto);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .form-checkbox-row input { margin-top: 3px; }
+  .form-checkbox-row a { color: var(--azul); font-weight: 600; }
+
+  .btn-enviar {
+    width: 100%;
+    border: none;
+    background: var(--azul);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-enviar:hover { background: var(--azul-escuro); transform: translateY(-1px); }
+  .btn-enviar[disabled] { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  .form-nota {
+    margin: 12px 0 0;
+    font-size: 11.5px;
+    color: var(--cinza-texto);
+    text-align: center;
+  }
+
+  .form-erro {
+    margin: 10px 0 0;
+    font-size: 12.5px;
+    color: #e24c4c;
+    text-align: center;
+  }
+
+  .form-sucesso { text-align: center; padding: 10px 0; }
+
+  .form-sucesso svg {
+    width: 44px;
+    height: 44px;
+    color: var(--verde);
+    margin-bottom: 12px;
+  }
+
+  .form-sucesso h3 { font-size: 19px; margin-bottom: 8px; }
+  .form-sucesso p { color: var(--cinza-texto); font-size: 14px; margin: 0; }
+
+  @media (max-width: 900px) {
+    .caixa { grid-template-columns: 1fr; gap: 32px; }
+    main { padding: 12px 20px 40px; }
+    .form-card { padding: 26px 22px; }
+  }
+
+  @media (max-width: 420px) {
+    .destaque-card { padding: 14px 16px; gap: 12px; }
+    .destaque-valor { width: 70px; height: 58px; }
+    .destaque-valor .n { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="marca">
+    <span class="hd-icon"><img src="assets/img/logo_site.png" alt=""></span>
+    <span class="hd-wordmark"><img src="assets/img/tipo_logo.png" alt="Hudson Drive"></span>
+  </a>
+</header>
+
+<main>
+  <div class="caixa">
+    <div class="lado-texto">
+      <span class="eyebrow">Oferta de lançamento</span>
+      <h1>Comece com o pé direito <span class="destaque">na Hudson Drive</span></h1>
+      <p class="sub">
+        Motociclista parceiro ganha bônus só por ativar o cadastro. Passageiro
+        ganha desconto direto na primeira viagem. Faça seu pré-cadastro abaixo.
+      </p>
+
+      <div class="destaques">
+        <div class="destaque-card destaque-card--moto" data-preselect="mot">
+          <div class="destaque-valor">
+            <span class="n">R$ 5,00</span>
+            <span class="u">Bônus</span>
+          </div>
+          <div class="destaque-textos">
+            <div class="destaque-titulo">Motociclista parceiro</div>
+            <div class="destaque-desc">Bônus de boas-vindas já no seu saldo, assim que seu cadastro é aprovado.</div>
+          </div>
+          <svg class="destaque-seta" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+
+        <div class="destaque-card destaque-card--pax" data-preselect="pax">
+          <div class="destaque-valor">
+            <span class="n">8,74%</span>
+            <span class="u">Off</span>
+          </div>
+          <div class="destaque-textos">
+            <div class="destaque-titulo">Passageiro</div>
+            <div class="destaque-desc">Desconto automático na sua primeira viagem com a Hudson Drive.</div>
+          </div>
+          <svg class="destaque-seta" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+      </div>
+
+      <div class="rodape-confianca">
+        <span class="confianca-item"><span class="ponto"></span>Sem custo, sem compromisso</span>
+        <span class="confianca-item"><span class="ponto"></span>Leva menos de 1 minuto</span>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2>Formulário de intenção</h2>
+      <p>Deixe seus dados e avisaremos assim que a Hudson Drive chegar até você.</p>
+
+      <form id="form-intencao">
+        <span class="form-label">Quero me cadastrar como:</span>
+        <div class="form-radio-group">
+          <input type="radio" name="perfil" id="form-perfil-pax" value="pax" checked>
+          <label for="form-perfil-pax">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2.4"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+            Passageiro
+          </label>
+
+          <input type="radio" name="perfil" id="form-perfil-mot" value="mot">
+          <label for="form-perfil-mot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="8.5"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+              <path d="M12 5.5v3"></path>
+            </svg>
+            Motorista
+          </label>
+        </div>
+
+        <div class="form-grid">
+          <input class="form-input" type="text" name="nome" placeholder="Nome completo" required>
+          <input class="form-input" type="tel" name="whatsapp" placeholder="WhatsApp" required>
+          <input class="form-input form-full" type="email" name="email" placeholder="E-mail" required>
+          <input class="form-input form-full" type="text" name="cidade" placeholder="Cidade" required>
+        </div>
+
+        <label class="form-checkbox-row">
+          <input type="checkbox" required>
+          <span>Li e concordo com a <a href="https://movisix-legal.netlify.app" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+        </label>
+
+        <button type="submit" class="btn-enviar">
+          Enviar intenção
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </button>
+
+        <p class="form-nota">Isso é um pré-cadastro de intenção — não é uma matrícula nem gera qualquer cobrança.</p>
+        <p class="form-erro" id="form-erro" hidden>Não conseguimos enviar agora. Verifique sua internet e tente de novo.</p>
+      </form>
+
+      <div class="form-sucesso" id="form-sucesso" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="m8.5 12.5 2.5 2.5 4.5-5"></path>
+        </svg>
+        <h3>Intenção recebida!</h3>
+        <p>Obrigado pelo interesse na Hudson Drive. Assim que tivermos novidades pra você, entraremos em contato.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll('[data-preselect]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var alvo = document.getElementById('form-perfil-' + el.dataset.preselect);
+      if (alvo) alvo.checked = true;
+    });
+  });
+
+  var SUPABASE_URL = 'https://hsbmsncwptsvmxqerhdz.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_68iJcrAKTLlMf4Vc7_ld5Q_-y6IH_6p';
+
+  var formIntencao = document.getElementById('form-intencao');
+  if (formIntencao) {
+    var botaoEnviar = formIntencao.querySelector('.btn-enviar');
+    var textoBotaoOriginal = botaoEnviar.innerHTML;
+    var erroEl = document.getElementById('form-erro');
+
+    formIntencao.addEventListener('submit', function (e) {
+      e.preventDefault();
+      erroEl.hidden = true;
+
+      var dados = new FormData(formIntencao);
+      var corpo = {
+        perfil: dados.get('perfil'),
+        nome: dados.get('nome'),
+        whatsapp: dados.get('whatsapp'),
+        email: dados.get('email'),
+        cidade: dados.get('cidade'),
+      };
+
+      botaoEnviar.disabled = true;
+      botaoEnviar.textContent = 'Enviando...';
+
+      fetch(SUPABASE_URL + '/rest/v1/pre_cadastro_site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_KEY,
+          Authorization: 'Bearer ' + SUPABASE_KEY,
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(corpo),
+      })
+        .then(function (resposta) {
+          if (!resposta.ok) throw new Error('Falha ao enviar');
+          formIntencao.hidden = true;
+          document.getElementById('form-sucesso').hidden = false;
+        })
+        .catch(function () {
+          erroEl.hidden = false;
+        })
+        .finally(function () {
+          botaoEnviar.disabled = false;
+          botaoEnviar.innerHTML = textoBotaoOriginal;
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
